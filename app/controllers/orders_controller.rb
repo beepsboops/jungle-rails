@@ -1,7 +1,24 @@
 class OrdersController < ApplicationController
 
   def show
+    @product = Product.find params[:id]
     @order = Order.find(params[:id])
+    @line_item = LineItem.find(params[:id])
+    @order_items = enhanced_cart
+    # puts "LOG: Product", @product.quantity
+    # puts "LOG: LineItem", LineItem.where(order_id: params[:id])
+    # puts "LOG: LineItem", @line_item.product_id
+    puts "LOG: enhanced_cart:", enhanced_cart
+    # @order_items = enhanced_cart.each do |entry|
+    #   product = entry[:product]
+    #   quantity = entry[:quantity]
+    #   order.line_items.new(
+    #     product: product,
+    #     quantity: quantity,
+    #     item_price: product.price,
+    #     total_price: product.price * quantity
+    #   )
+    # end
   end
 
   def create
