@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature, js: true do
+RSpec.feature "AddToCarts", type: :feature, js: true do
   # pending "add some scenarios (or delete) #{__FILE__}"
 
   # SETUP
@@ -18,23 +18,21 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     end
   end
 
-  scenario "They navigate to product detail page" do
-    
+  scenario "User clicks 'Add to Cart' and cart increases by one" do
 
     # ACT
     visit root_path
     puts page.html
-    click_link class: 'btn btn-default pull-right', match: :first do
+    click_button class: 'btn btn-primary', match: :first do
     end
     puts page.html
-    
 
     # DEBUG
     save_screenshot
 
     # VERIFY
-    expect(page).to have_css 'article.product'
+    # expect(page).to have_css 'article.product', count: 10
+    expect(page).to have_text 'My Cart (1)'
   end
-
 
 end
